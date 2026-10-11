@@ -90,6 +90,7 @@ PLATFORM_MODULES = [
 # See docs/03-platform/module-authoring-guide.md to add one.
 DOMAIN_MODULES = [
     "modules.placement",
+    "modules.leave",            # Employee Leave Management (ELM)
 ]
 
 INSTALLED_APPS = (DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -227,6 +228,49 @@ SPECTACULAR_SETTINGS = {
     "DESCRIPTION": "Non-academic platform. Independent modules, one login.",
     "VERSION": "1.0.0",
     "SERVE_INCLUDE_SCHEMA": False,
+    # Several modules reuse a field name (`status`, `kind`, `category`) with
+    # different choice sets, so spectacular cannot name the components from the
+    # field alone. These name leave's sets explicitly; placement keeps the
+    # auto-generated names it had before.
+    "ENUM_NAME_OVERRIDES": {
+        "LeaveCategoryEnum": [
+            ("CL", "Casual Leave"), ("RH", "Restricted Holiday"),
+            ("SCL", "Special Casual Leave"), ("EL", "Earned Leave"),
+            ("COL", "Commuted Leave"), ("VL", "Vacation Leave"),
+        ],
+        "LeaveRequestStatusEnum": [
+            ("draft", "Draft / Not Submitted"),
+            ("awaiting_substitute", "Awaiting Substitute Response"),
+            ("applicant_action_required", "Applicant Action Required"),
+            ("awaiting_unit_head", "Awaiting Unit Head Review"),
+            ("awaiting_establishment", "Awaiting Establishment Routing"),
+            ("awaiting_final_sanction", "Awaiting Final Sanction Decision"),
+            ("awaiting_director_self_sanction", "Awaiting Director Self-Sanction"),
+            ("approved", "Approved"), ("rejected", "Rejected"),
+            ("withdrawn", "Withdrawn"), ("cancelled", "Cancelled"),
+        ],
+        "LeaveRequestKindEnum": [
+            ("application", "Application"), ("cancellation", "Cancellation"),
+            ("extension", "Extension"),
+        ],
+        "LeaveCalendarStatusEnum": [
+            ("draft", "Draft"), ("published", "Published"),
+        ],
+        "LeaveHolidayKindEnum": [
+            ("closed", "Closed holiday"), ("restricted", "Restricted holiday"),
+        ],
+        "LeaveSubstituteStatusEnum": [
+            ("requested", "Requested"), ("accepted", "Accepted"),
+            ("declined", "Declined"), ("superseded", "Superseded"),
+        ],
+        "LeaveTaskStatusEnum": [
+            ("pending", "Pending"), ("done", "Done"), ("cancelled", "Cancelled"),
+        ],
+        "LeaveHalfDayEnum": [
+            ("none", "Full day"), ("first_half", "First half"),
+            ("second_half", "Second half"),
+        ],
+    },
 }
 
 CORS_ALLOW_ALL_ORIGINS = False

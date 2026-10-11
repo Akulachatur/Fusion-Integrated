@@ -4,13 +4,15 @@ Lives in `devtools` rather than inside a module: seeding is cross-cutting and
 would otherwise make one module import three others' models. `devtools` is a
 tool, not a bounded context, so .importlinter exempts it explicitly.
 """
-from datetime import timedelta
+from datetime import date, timedelta
 
 from django.core.management.base import BaseCommand
 from django.db import transaction
 from django.utils import timezone
 
 from modules.directory.models import UserRef
+from modules.leave.services import balances as leave_balances
+from modules.leave.services import configuration as leave_config
 from modules.placement.models import Application, Company, JobPosting
 
 
@@ -55,6 +57,20 @@ class Command(BaseCommand):
                           "eligibility_snapshot": {"is_eligible": True},
                           "applied_at": timezone.now()})
 
-
+        # ELM: baseline policy/hierarchy/SLA plus one published calendar, so the
+        # leave module is usable straight after `make seed`.
+        leave_balances.seed_default_policy()
+        leave_config.seed_default_hierarchy()
+        leave_config.seed_default_sla()
+        year = timezone.now().date().year
+        leave_config.publish_calendar(year, [
+            {"date": date(year, 1, 26), "name": "Republic Day", "kind": "closed"},
+            {"date": date(year, 8, 15), "name": "Independence Day", "kind": "closed"},
+            {"date": date(year, 10, 2), "name": "Gandhi Jayanti", "kind": "closed"},
+        ], note="Demo calendar")
+        leave_config.sync_vacation_periods([
+            {"start_date": date(year, 5, 15), "end_date": date(year, 6, 30),
+             "label": "Summer vacation"},
+        ])
 
         self.stdout.write(self.style.SUCCESS("demo data loaded"))

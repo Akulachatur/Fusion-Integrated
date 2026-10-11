@@ -13,6 +13,22 @@ For the intended taxonomy of modules not yet built, see
 |---|---|---|
 | `directory.user.search` | Search the institute directory | `Dean Academic`, `acadadmin`, `placement_chairman`, `placement_coordinator`, `placement_officer` |
 
+## `leave`
+
+| Code | What it allows | Held by |
+|---|---|---|
+| `leave.request.view_self` | View own leave requests and balance | `faculty`, `staff`, `unit_head` |
+| `leave.request.create` | Apply for leave | `faculty`, `staff`, `unit_head` |
+| `leave.request.delete` | Withdraw a pending leave request | `faculty`, `staff`, `unit_head` |
+| `leave.request.view` | View leave requests in scope | `Dean`, `Director`, `Registrar`, `deputy_registrar`, `leave_admin`, `unit_head` |
+| `leave.request.approve` | Review and decide leave requests | `Dean`, `Director`, `Registrar`, `deputy_registrar`, `unit_head` |
+| `leave.resume.review` | Review resumption of duty | `Dean`, `Director`, `Registrar`, `deputy_registrar`, `unit_head` |
+| `leave.balance.update` | Adjust a leave balance | `leave_admin` |
+| `leave.type.manage` | Configure leave policy and hierarchy | `leave_admin` |
+| `leave.calendar.manage` | Maintain and publish the holiday/RH calendar | `leave_admin` |
+| `leave.record.manage` | Record offline-sanctioned leave and maintain records | `leave_admin` |
+| `leave.sla.manage` | Configure workflow SLA thresholds | `leave_admin` |
+
 ## `placement_cell`
 
 | Code | What it allows | Held by |

@@ -34,6 +34,117 @@
       "scope_permissions": [],
       "system_permissions": []
     },
+    "leave": {
+      "grants": {
+        "Dean": [
+          "leave.request.approve",
+          "leave.request.view",
+          "leave.resume.review"
+        ],
+        "Director": [
+          "leave.request.approve",
+          "leave.request.view",
+          "leave.resume.review"
+        ],
+        "Registrar": [
+          "leave.request.approve",
+          "leave.request.view",
+          "leave.resume.review"
+        ],
+        "deputy_registrar": [
+          "leave.request.approve",
+          "leave.request.view",
+          "leave.resume.review"
+        ],
+        "faculty": [
+          "leave.request.create",
+          "leave.request.delete",
+          "leave.request.view_self"
+        ],
+        "leave_admin": [
+          "leave.balance.update",
+          "leave.calendar.manage",
+          "leave.record.manage",
+          "leave.request.view",
+          "leave.sla.manage",
+          "leave.type.manage"
+        ],
+        "staff": [
+          "leave.request.create",
+          "leave.request.delete",
+          "leave.request.view_self"
+        ],
+        "unit_head": [
+          "leave.request.approve",
+          "leave.request.create",
+          "leave.request.delete",
+          "leave.request.view",
+          "leave.request.view_self",
+          "leave.resume.review"
+        ]
+      },
+      "module_grants": [
+        "Dean",
+        "Director",
+        "Registrar",
+        "deputy_registrar",
+        "faculty",
+        "leave_admin",
+        "staff",
+        "unit_head"
+      ],
+      "permissions": [
+        {
+          "code": "leave.request.view_self",
+          "label": "View own leave requests and balance"
+        },
+        {
+          "code": "leave.request.create",
+          "label": "Apply for leave"
+        },
+        {
+          "code": "leave.request.delete",
+          "label": "Withdraw a pending leave request"
+        },
+        {
+          "code": "leave.request.view",
+          "label": "View leave requests in scope"
+        },
+        {
+          "code": "leave.request.approve",
+          "label": "Review and decide leave requests"
+        },
+        {
+          "code": "leave.resume.review",
+          "label": "Review resumption of duty"
+        },
+        {
+          "code": "leave.balance.update",
+          "label": "Adjust a leave balance"
+        },
+        {
+          "code": "leave.type.manage",
+          "label": "Configure leave policy and hierarchy"
+        },
+        {
+          "code": "leave.calendar.manage",
+          "label": "Maintain and publish the holiday/RH calendar"
+        },
+        {
+          "code": "leave.record.manage",
+          "label": "Record offline-sanctioned leave and maintain records"
+        },
+        {
+          "code": "leave.sla.manage",
+          "label": "Configure workflow SLA thresholds"
+        }
+      ],
+      "scope_permissions": [],
+      "system_permissions": [
+        "leave.sla.process",
+        "leave.year_end.process"
+      ]
+    },
     "placement_cell": {
       "grants": {
         "Dean Academic": [
