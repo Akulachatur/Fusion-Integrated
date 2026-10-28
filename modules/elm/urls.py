@@ -1,9 +1,18 @@
+
 from django.urls import path
-from .views import LeaveTypeListCreateView, LeaveTypeRetrieveUpdateDestroyView, LeaveRequestListCreateView, LeaveRequestRetrieveUpdateDestroyView
+
+from .views import MyLeavesView, SubstituteQueueView, SubstituteRespondView, UnitHeadApprovalsView      
+
+
 
 urlpatterns = [
-    path('leave-types/', LeaveTypeListCreateView.as_view(), name='leave-type-list-create'),
-    path('leave-types/<int:pk>/', LeaveTypeRetrieveUpdateDestroyView.as_view(), name='leave-type-retrieve-update-destroy'),
-    path('leave-requests/', LeaveRequestListCreateView.as_view(), name='leave-request-list-create'),
-    path('leave-requests/<int:pk>/', LeaveRequestRetrieveUpdateDestroyView.as_view(), name='leave-request-retrieve-update-destroy'),
+
+    path('my-leaves/', MyLeavesView.as_view(), name='my-leaves'),
+
+    path('substitute-queue/', SubstituteQueueView.as_view(), name='substitute-queue'),
+
+    path('substitute-respond/<int:pk>/', SubstituteRespondView.as_view(), name='substitute-respond'),   
+
+    path('unit-head-approvals/', UnitHeadApprovalsView.as_view(), name='unit-head-approvals'),
+
 ]
